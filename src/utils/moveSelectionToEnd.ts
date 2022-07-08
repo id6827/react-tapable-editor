@@ -1,5 +1,5 @@
-import { EditorState, SelectionState } from 'draft-js';
-import { BlockNodeMap, ContentBlockNode } from 'types';
+import {EditorState, SelectionState} from 'draft-js';
+import {BlockNodeMap, ContentBlockNode} from 'types';
 
 /**
  * Returns a new EditorState where the Selection is at the end.
@@ -10,20 +10,20 @@ import { BlockNodeMap, ContentBlockNode } from 'types';
  * Selection at a specific location by clicking on the text.
  */
 const moveSelectionToEnd = (editorState: EditorState) => {
-  const content = editorState.getCurrentContent();
-  const blockMap = content.getBlockMap() as BlockNodeMap;
+	const content = editorState.getCurrentContent();
+	const blockMap = content.getBlockMap() as BlockNodeMap;
 
-  const key = blockMap.last<ContentBlockNode>().getKey();
-  const length = blockMap.last<ContentBlockNode>().getLength();
+	const key = blockMap.last<ContentBlockNode>().getKey();
+	const length = blockMap.last<ContentBlockNode>().getLength();
 
-  const selection = new SelectionState().merge({
-    anchorKey: key,
-    anchorOffset: length,
-    focusKey: key,
-    focusOffset: length,
-  });
+	const selection = new SelectionState().merge({
+		anchorKey: key,
+		anchorOffset: length,
+		focusKey: key,
+		focusOffset: length,
+	});
 
-  return EditorState.acceptSelection(editorState, selection);
+	return EditorState.acceptSelection(editorState, selection);
 };
 
 export default moveSelectionToEnd;

@@ -1,20 +1,20 @@
-import { ContentBlockNode } from '.';
-import { Map } from 'immutable';
+import {ContentBlockNode} from '.';
+import {Map} from 'immutable';
 
 export enum Position {
-  Top = 'top',
-  Right = 'right',
-  Bottom = 'bottom',
-  Left = 'left',
+	Top = 'top',
+	Right = 'right',
+	Bottom = 'bottom',
+	Left = 'left',
 }
 
 export enum Direction {
-  Row = 'row',
-  Column = 'column',
+	Row = 'row',
+	Column = 'column',
 }
 
 export interface TransformBlockCallback {
-  (block: ContentBlockNode): ContentBlockNode;
+	(block: ContentBlockNode): ContentBlockNode;
 }
 
 // export interface WrapperProps {
@@ -23,10 +23,8 @@ export interface TransformBlockCallback {
 //   'data-direction': Direction;
 // }
 
-export type WrapperProps = Map<
-  'flexRow' | 'data-wrapper' | 'data-direction' | undefined,
-  boolean | Direction | undefined
->;
+export type WrapperProps = Map<'flexRow' | 'data-wrapper' | 'data-direction' | undefined,
+		boolean | Direction | undefined>;
 
 // addEventListener<K extends keyof WindowEventMap>
 // (type: K, listener: (this: Window, ev: WindowEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
@@ -37,7 +35,7 @@ export type WrapperProps = Map<
 //   options?: boolean | AddEventListenerOptions
 // }
 export interface Binding {
-  eventName: string;
-  fn: (e: MouseEvent) => any;
-  options?: AddEventListenerOptions;
+	eventName: string;
+	fn: (e: MouseEvent) => any;
+	options?: AddEventListenerOptions;
 }

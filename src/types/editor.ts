@@ -1,22 +1,22 @@
-import { RefObject, ReactNode, Ref } from 'react';
-import { DraftBlockRenderMap, DraftStyleMap, Editor } from 'draft-js';
-import { GetEditor } from './';
+import {ReactNode, Ref, RefObject} from 'react';
+import {DraftBlockRenderMap, DraftStyleMap, Editor} from 'draft-js';
+import {GetEditor} from './';
 
 export interface EditorPropsBefore {
-  imageRef: RefObject<HTMLDivElement>;
-  inlineRef: RefObject<HTMLDivElement>;
-  sidebarRef: RefObject<HTMLDivElement>;
-  blockRenderMap: DraftBlockRenderMap;
-  customStyleMap: DraftStyleMap;
-  children?: ReactNode;
-  placeholder: string;
+	imageRef: RefObject<HTMLDivElement>;
+	inlineRef: RefObject<HTMLDivElement>;
+	sidebarRef: RefObject<HTMLDivElement>;
+	blockRenderMap: DraftBlockRenderMap;
+	customStyleMap: DraftStyleMap;
+	children?: ReactNode;
+	placeholder: string;
 }
 
 // ts-hint: interface extends interface...
 export type EditorProps = {
-  forwardRef: Ref<Editor>;
+	forwardRef: Ref<Editor>;
 } & EditorPropsBefore & {
-    getEditor: GetEditor;
-  };
+	getEditor: GetEditor;
+};
 
 export type EditorRef = RefObject<Editor>;

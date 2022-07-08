@@ -1,34 +1,36 @@
 import Link from '../components/link';
-import { GetEditor, DraftNodeDecoratorStrategy, DecoratorPair } from '../types';
+import {DecoratorPair, DraftNodeDecoratorStrategy, GetEditor} from '../types';
+import {ReactNode} from "react";
 
-function LinkDecorator() {
-  this.apply = (getEditor: GetEditor) => {
-    const { hooks } = getEditor();
+function LinkDecorator(this: any) {
+	this.apply = (getEditor: GetEditor) => {
+		const {hooks} = getEditor();
 
-    hooks.updateDecorator.tap(
-      'LinkDecorator',
-      (pairs: DecoratorPair[] = []) => {
-        const strategy: DraftNodeDecoratorStrategy = (
-          contentBlock,
-          cb,
-          contentState
-        ) => {
-          if (!contentState) return;
-          contentBlock.findEntityRanges(character => {
-            const entityKey = character.getEntity();
-            if (!entityKey) return false;
-            const entityType = contentState.getEntity(entityKey).getType();
-            return entityType === 'LINK';
-          }, cb);
-        };
+		hooks.updateDecorator.tap(
+				'LinkDecorator',
+				(pairs: DecoratorPair[] = []) => {
+					const strategy: DraftNodeDecoratorStrategy = (
+							contentBlock,
+							cb,
+							contentState
+					) => {
+						if (!contentState) return;
+						contentBlock.findEntityRanges(character => {
+							const entityKey = character.getEntity();
+							if (!entityKey) return false;
+							const entityType = contentState.getEntity(entityKey).getType();
+							return entityType === 'LINK';
+						}, cb);
+					};
 
-        return pairs.concat({
-          strategy,
-          component: Link,
-        });
-      }
-    );
-  };
+					const decoratorPair: DecoratorPair = {
+						strategy: strategy,
+						component: Link as unknown as ReactNode,
+					}
+					return pairs.concat(decoratorPair);
+				}
+		);
+	};
 }
 
 export default LinkDecorator;

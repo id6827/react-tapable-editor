@@ -1,55 +1,51 @@
 import EffectsManager from './EffectsManager';
 import report from '../../../reporter';
 import Container from '../../../Container';
-import {
-  OnMoveHandleContext,
-  OnMoveArgs,
-  OnMoveOperation,
-} from '../../../../../types';
-import { Action } from 'sabar';
+import {OnMoveArgs, OnMoveHandleContext, OnMoveOperation,} from '../../../../../types';
+import {Action} from 'sabar';
 
 const handleEnterContainer = (args: any, ctx: object, actions: Action) => {
-  const { lifeUpDragger, isHomeContainer, prevImpact } = args as OnMoveArgs;
-  const context = ctx as OnMoveHandleContext;
-  const { impactRawInfo, dndEffects } = context;
+	const {lifeUpDragger, isHomeContainer, prevImpact} = args as OnMoveArgs;
+	const context = ctx as OnMoveHandleContext;
+	const {impactRawInfo, dndEffects} = context;
 
-  const prevImpactVContainer = prevImpact.impactVContainer;
-  const currentImpactVContainer = impactRawInfo.impactVContainer;
+	const prevImpactVContainer = prevImpact.impactVContainer;
+	const currentImpactVContainer = impactRawInfo.impactVContainer;
 
-  console.log('prev ', prevImpactVContainer, currentImpactVContainer);
+	console.log('prev ', prevImpactVContainer, currentImpactVContainer);
 
-  if (
-    (!prevImpactVContainer && currentImpactVContainer) ||
-    (prevImpactVContainer &&
-      currentImpactVContainer &&
-      prevImpactVContainer.id !== currentImpactVContainer.id)
-  ) {
-    let effectsManager = dndEffects.find(currentImpactVContainer.id);
-    const { impactVContainer } = impactRawInfo;
+	if (
+			(!prevImpactVContainer && currentImpactVContainer) ||
+			(prevImpactVContainer &&
+					currentImpactVContainer &&
+					prevImpactVContainer.id !== currentImpactVContainer.id)
+	) {
+		let effectsManager = dndEffects.find(currentImpactVContainer.id);
+		const {impactVContainer} = impactRawInfo;
 
-    if (!effectsManager) {
-      effectsManager = new EffectsManager({
-        dragger: lifeUpDragger,
-        impactContainer: impactVContainer as Container,
-      });
+		if (!effectsManager) {
+			effectsManager = new EffectsManager({
+				dragger: lifeUpDragger,
+				impactContainer: impactVContainer as Container,
+			});
 
-      dndEffects.add(effectsManager);
-    }
+			dndEffects.add(effectsManager);
+		}
 
-    report.logEnterContainer(currentImpactVContainer);
+		report.logEnterContainer(currentImpactVContainer);
 
-    context.action = {
-      operation: OnMoveOperation.OnEnter,
-      isHomeContainerFocused: isHomeContainer(currentImpactVContainer),
-      effectsManager,
-    };
-    context.impact = {
-      impactVContainer: currentImpactVContainer,
-      index: null,
-    };
-  }
+		context.action = {
+			operation: OnMoveOperation.OnEnter,
+			isHomeContainerFocused: isHomeContainer(currentImpactVContainer),
+			effectsManager,
+		};
+		context.impact = {
+			impactVContainer: currentImpactVContainer,
+			index: null,
+		};
+	}
 
-  actions.next();
+	actions.next();
 };
 
 export default handleEnterContainer;

@@ -3,7 +3,6 @@ import SelectionChangePlugin from '../plugins/SelectionChangePlugin';
 import CustomStyleMapPlugin from '../plugins/CustomStyleMapPlugin';
 import BlockRenderMapPlugin from '../plugins/block-render-map-plugin';
 // import StyleControlPlugin from "../plugins/StyleControlPlugin";
-
 import AddImagePlugin from '../plugins/AddImagePlugin';
 import DefaultHandleKeyCommandPlugin from '../plugins/DefaultHandleKeyCommandPlugin';
 
@@ -23,46 +22,22 @@ import UpdateBlockDepthData from '../plugins/UpdateBlockDepthData';
 import createEditor from '../createEditor';
 
 const defaultPlugins = [
-  // @ts-ignore
-  new BlockStyleFnPlugin(),
-  // @ts-ignore
-  new SelectionChangePlugin(),
-  // @ts-ignore
-  new CustomStyleMapPlugin(),
-  // @ts-ignore
-  new BlockRenderMapPlugin(),
-
-  // @ts-ignore
-  new AddImagePlugin(),
-  // new HandleDroppedFilesPlugin(),
-
-  // 对于keyCommand的一个兜底行为
-  // @ts-ignore
-  new DefaultHandleKeyCommandPlugin(),
-
-  // @ts-ignore
-  // new StyleControlPlugin(),
-
-  // @ts-ignore
-  new InlineToolbarPlugin(),
-  // @ts-ignore
-  new LinkSpanDecoratorPlugin(),
-  // @ts-ignore
-  new LinkDecoratorPlugin(),
-  // @ts-ignore
-  new SidebarPlugin(),
-
-  // @ts-ignore
-  new StateFilterPlugin(),
-
-  // @ts-ignore
-  new DNDPlugin(),
-
-  // @ts-ignore
-  new FinalNewLinePlugin(),
-
-  // @ts-ignore
-  new UpdateBlockDepthData(),
+	new BlockStyleFnPlugin(),
+	new SelectionChangePlugin(),
+	new CustomStyleMapPlugin(),
+	new BlockRenderMapPlugin(),
+	new AddImagePlugin(),
+	// new HandleDroppedFilesPlugin(),
+	new DefaultHandleKeyCommandPlugin(),
+	// new StyleControlPlugin(),
+	new InlineToolbarPlugin(),
+	new LinkSpanDecoratorPlugin(),
+	new LinkDecoratorPlugin(),
+	new SidebarPlugin(),
+	new StateFilterPlugin(),
+	new DNDPlugin(),
+	new FinalNewLinePlugin(),
+	new UpdateBlockDepthData(),
 ];
 
 const DocEditor = createEditor(defaultPlugins);

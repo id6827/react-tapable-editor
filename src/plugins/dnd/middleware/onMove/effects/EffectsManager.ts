@@ -1,11 +1,7 @@
-import { isFunction } from '../../../utils';
+import {isFunction} from '../../../utils';
 import Dragger from '../../../Dragger';
 import Container from '../../../Container';
-import {
-  ImpactDraggerEffect,
-  DraggerEffect,
-  ContainerEffect,
-} from '../../../../../types';
+import {ContainerEffect, DraggerEffect, ImpactDraggerEffect,} from '../../../../../types';
 
 export default class EffectsManager {
   private dragger: Dragger;
@@ -17,9 +13,9 @@ export default class EffectsManager {
   public downstreamDraggersEffects: DraggerEffect[];
 
   constructor({
-    dragger,
-    impactContainer,
-  }: {
+                dragger,
+                impactContainer,
+              }: {
     dragger: Dragger;
     impactContainer: Container;
   }) {
@@ -34,7 +30,7 @@ export default class EffectsManager {
   }
 
   isHomeContainerEffects() {
-    const { container } = this.dragger;
+    const {container} = this.dragger;
     return container.id === this.impactContainer.id;
   }
 
@@ -43,29 +39,29 @@ export default class EffectsManager {
   }
 
   clearImpactContainerEffects() {
-    this.impactContainerEffects.forEach(({ teardown }) =>
-      this.assertRun(teardown)
+    this.impactContainerEffects.forEach(({teardown}) =>
+        this.assertRun(teardown)
     );
     this.impactContainerEffects = [];
   }
 
   clearImpactDraggerEffects() {
-    this.impactDraggerEffects.forEach(({ teardown }) =>
-      this.assertRun(teardown)
+    this.impactDraggerEffects.forEach(({teardown}) =>
+        this.assertRun(teardown)
     );
     this.impactDraggerEffects = [];
   }
 
   clearDownstreamEffects() {
-    this.downstreamDraggersEffects.forEach(({ teardown }) =>
-      this.assertRun(teardown)
+    this.downstreamDraggersEffects.forEach(({teardown}) =>
+        this.assertRun(teardown)
     );
     this.downstreamDraggersEffects = [];
   }
 
   clearUpstreamEffects() {
-    this.upstreamDraggersEffects.forEach(({ teardown }) =>
-      this.assertRun(teardown)
+    this.upstreamDraggersEffects.forEach(({teardown}) =>
+        this.assertRun(teardown)
     );
     this.upstreamDraggersEffects = [];
   }

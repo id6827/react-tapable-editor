@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "baseUrl": "./src",
+    "paths": {
+      "@app": ["./app.tsx"],
+      "@types": ["./types/index.ts"],
+      "@components/*": ["./components/*"],
+      "@decorators/*": ["./decorators/*"],
+      "@editor/*": ["./editor/*"],
+      "@helpers/*": ["./helpers/*"],
+      "@hooks/*": ["./hooks/*"],
+      "@plugins/*": ["./plugins/*"],
+      "@utils/*": ["./utils/*"]
+    }
+  }
+}

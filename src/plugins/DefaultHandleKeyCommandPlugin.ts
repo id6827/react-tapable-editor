@@ -5,28 +5,27 @@
 
 // https://github.com/facebook/draft-js/blob/master/examples/draft-0-9-1/rich/rich.html#L52
 // https://github.com/facebook/draft-js/blob/master/src/model/modifier/RichTextEditorUtil.js#L54
-import { EditorState, DraftEditorCommand } from 'draft-js';
-import { GetEditor } from '../types';
+import {DraftEditorCommand, EditorState} from 'draft-js';
+import {GetEditor} from '../types';
 
-// @ts-ignore
 import decorateKeyCommandHandler from '../utils/draft-js/decorateKeyCommandHandler';
 
-function DefaultHandleKeyCommandPlugin() {
-  this.apply = (getEditor: GetEditor) => {
-    const { hooks } = getEditor();
-    hooks.handleKeyCommand.tap(
-      'HandleBackspaceOnStartOfBlockPlugin',
-      (command: DraftEditorCommand, editorState: EditorState) => {
-        // https://github.com/facebook/draft-js/blob/master/examples/draft-0-10-0/playground/src/DraftJsRichEditorExample.js#L26
-        const newState = decorateKeyCommandHandler(editorState, command);
-        if (newState) {
-          hooks.setState.call(newState);
-          return 'handled';
-        }
-        return;
-      }
-    );
-  };
+function DefaultHandleKeyCommandPlugin(this:any) {
+	this.apply = (getEditor: GetEditor) => {
+		const {hooks} = getEditor();
+		hooks.handleKeyCommand.tap(
+				'HandleBackspaceOnStartOfBlockPlugin',
+				(command: DraftEditorCommand, editorState: EditorState) => {
+					// https://github.com/facebook/draft-js/blob/master/examples/draft-0-10-0/playground/src/DraftJsRichEditorExample.js#L26
+					const newState = decorateKeyCommandHandler(editorState, command);
+					if (newState) {
+						hooks.setState.call(newState);
+						return 'handled';
+					}
+					return;
+				}
+		);
+	};
 }
 
 export default DefaultHandleKeyCommandPlugin;

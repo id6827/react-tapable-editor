@@ -8,8 +8,8 @@ body {
   height: 100vh;
   position: relative;
   font-family: Helvetica Neue, -apple-system, BlinkMacSystemFont, Segoe UI,
-    PingFang SC, Roboto, Microsoft YaHei, Source Han Sans SC, Noto Sans CJK SC,
-    Myriad Pro, Hiragino Sans, Yu Gothic, Lucida Grande, sans-serif;
+  PingFang SC, Roboto, Microsoft YaHei, Source Han Sans SC, Noto Sans CJK SC,
+  Myriad Pro, Hiragino Sans, Yu Gothic, Lucida Grande, sans-serif;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -29,8 +29,8 @@ body {
 
 .miuffy-editor .article-title,
 .miuffy-editor div[data-contents="true"] > div
-/* .miuffy-editor div[data-contents="true"] > figure */
- {
+  /* .miuffy-editor div[data-contents="true"] > figure */
+{
   width: 900px;
   max-width: 100%;
   margin-left: auto;

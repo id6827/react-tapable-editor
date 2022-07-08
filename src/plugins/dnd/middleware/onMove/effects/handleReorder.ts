@@ -1,37 +1,33 @@
-import {
-  OnMoveHandleContext,
-  OnMoveArgs,
-  OnMoveOperation,
-} from '../../../../../types';
-import { Action } from 'sabar';
+import {OnMoveArgs, OnMoveHandleContext, OnMoveOperation,} from '../../../../../types';
+import {Action} from 'sabar';
 
 const handleReorder = (args: any, ctx: object, actions: Action) => {
-  const { prevImpact, isHomeContainer } = args as OnMoveArgs;
-  const context = ctx as OnMoveHandleContext;
-  const {
-    impactRawInfo: { impactVContainer: currentImpactVContainer },
-    dndEffects,
-  } = context;
-  const { impactVContainer: prevImpactVContainer } = prevImpact;
+	const {prevImpact, isHomeContainer} = args as OnMoveArgs;
+	const context = ctx as OnMoveHandleContext;
+	const {
+		impactRawInfo: {impactVContainer: currentImpactVContainer},
+		dndEffects,
+	} = context;
+	const {impactVContainer: prevImpactVContainer} = prevImpact;
 
-  if (
-    prevImpactVContainer &&
-    currentImpactVContainer &&
-    prevImpactVContainer.id === currentImpactVContainer.id
-  ) {
-    const effectsManager = dndEffects.find(currentImpactVContainer.id);
+	if (
+			prevImpactVContainer &&
+			currentImpactVContainer &&
+			prevImpactVContainer.id === currentImpactVContainer.id
+	) {
+		const effectsManager = dndEffects.find(currentImpactVContainer.id);
 
-    context.action = {
-      operation: OnMoveOperation.ReOrder,
-      isHomeContainerFocused: isHomeContainer(currentImpactVContainer),
-      effectsManager,
-    };
+		context.action = {
+			operation: OnMoveOperation.ReOrder,
+			isHomeContainerFocused: isHomeContainer(currentImpactVContainer),
+			effectsManager,
+		};
 
-    actions.next();
-    return;
-  }
+		actions.next();
+		return;
+	}
 
-  actions.next();
+	actions.next();
 };
 
 export default handleReorder;

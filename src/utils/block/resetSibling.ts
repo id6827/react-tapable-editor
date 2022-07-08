@@ -1,8 +1,8 @@
-import { ContentBlockNode } from '../../types';
+import {ContentBlockNode} from '../../types';
 
 export default (block: ContentBlockNode) => {
-  return block.merge({
-    prevSibling: null,
-    nextSibling: null,
-  });
+	return block.merge({
+		prevSibling: null,
+		nextSibling: null,
+	});
 };

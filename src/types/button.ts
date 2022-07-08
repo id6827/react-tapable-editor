@@ -1,18 +1,18 @@
-import { ReactChild } from 'react';
+import {ReactNode} from 'react';
 
 export interface WithActionProps {
-  onClick: Function;
+	onClick: () => void;
 }
 
 export interface WithFillColorProps {
-  active: boolean;
+	active: boolean;
 }
 
 export interface ButtonProps {
-  children?: ReactChild;
-  fill: string;
+	children?: ReactNode;
+	fill: string;
 }
 
 export type IWithActionProps<T> = {
-  [P in keyof T]: T[P];
+	[P in keyof T]: T[P];
 };
